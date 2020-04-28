@@ -1,0 +1,59 @@
+<div class="example-container mat-elevation-z8">
+  <div>
+    <mat-form-field >
+      <input matInput type="text" (keyup)="doFilter($event.target.value)" 
+      placeholder="Filter">
+    </mat-form-field>
+  </div> 
+  <mat-table #table [dataSource]="dataSource">
+  
+      <!--- Note that these columns can be defined in any order.
+            The actual rendered columns are set as a property on the row definition" -->
+  
+      <!-- Position Column -->
+      <ng-container matColumnDef="checked">
+        <mat-header-cell *matHeaderCellDef>Check</mat-header-cell>
+        <mat-cell *matCellDef="let element"> 
+          <mat-checkbox [(ngModel)]="element.checked"></mat-checkbox>
+        </mat-cell>
+      </ng-container>
+  
+   <!-- Name Column -->
+   <ng-container matColumnDef="name">
+    <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
+  </ng-container>
+
+<!-- username column -->
+  <ng-container matColumnDef="username">
+    <mat-header-cell  *matHeaderCellDef> Username </mat-header-cell>
+    <mat-cell  *matCellDef="let element"> {{element.username}} </mat-cell>
+  </ng-container>
+
+  <!-- gender Column -->
+  <ng-container matColumnDef="gender">
+    <mat-header-cell  *matHeaderCellDef> Gender </mat-header-cell>
+    <mat-cell  *matCellDef="let element"> {{element.gender}} </mat-cell >
+  </ng-container>
+
+  <!-- designation Column -->
+  <ng-container matColumnDef="designation">
+      <mat-header-cell  *matHeaderCellDef> Designation </mat-header-cell>
+      <mat-cell  *matCellDef="let element"> {{element.designation}} </mat-cell>
+    </ng-container>
+
+
+
+  
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;" [ngClass]="{hovered: row.hovered, highlighted: row.highlighted}"
+       (click)="highlight(row)" (mouseover)="row.hovered = true" (mouseout)="row.hovered = false"></mat-row>
+    </mat-table>
+  </div>
+  
+  <div class="buttons-cls">
+    <button mat-raised-button color="primary" (click)="addUser()">Add</button>
+    <button mat-raised-button color="accent" (click)="updateUser()">Update</button>
+    <button mat-raised-button color="warn" (click)="deleteUser()">Delete</button>
+  </div>
+ 

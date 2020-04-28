@@ -1,0 +1,25 @@
+<div class="div-login">
+  <h4><b>Login here</b></h4>
+  <form [formGroup]="loginForm"  novalidate>
+    <div class="example-container">
+      <mat-form-field>
+        <input matInput placeholder="Email" formControlName="email">
+      </mat-form-field>
+  <br>
+      <mat-form-field>
+        <input matInput type="password" placeholder="Password" formControlName="password">    
+      </mat-form-field>
+  <br>
+  <p>
+    Forgot Password? Reset here
+  </p>
+      <button [disabled]="!loginForm.valid" mat-raised-button color="primary"
+       mat-button (click)="login()"> Sign In</button>
+    </div>
+  </form>
+  
+</div>
+
+<!-- <pre>
+{{loginForm.value | json }}
+</pre> -->

@@ -1,0 +1,95 @@
+<h1 *ngIf="isuser">
+  Add User here
+</h1>
+<h1 *ngIf="!isuser">
+  Add Flight here
+</h1>
+<!-- user form -->
+<form [formGroup]="userForm" (ngSubmit)="onAdd(userForm)" *ngIf="isuser">
+  <div class="example-container">
+    <mat-form-field appearance="fill">
+      <mat-label>Name</mat-label>
+      <input matInput type="text" name="name" formControlName="name" required>
+      <mat-error *ngIf="userForm.get('name').hasError('required')">Enter the name</mat-error>
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="fill">
+      <mat-label>Username</mat-label>
+      <input matInput matInput type="text" name="username" formControlName="username" required>
+      <mat-error *ngIf="userForm.get('username').hasError('required')">Enter the username</mat-error>
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="fill">
+      <mat-label>Password</mat-label>
+      <input matInput matInput type="password" name="password" formControlName="password" required>
+      <mat-error *ngIf="userForm.get('password').hasError('required')">Enter the password</mat-error>
+    </mat-form-field>
+    <br>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Gender</mat-label>
+      <mat-select aria-placeholder="gender" name="gender" formControlName="gender" required>
+        <mat-option *ngFor="let gender of genders" [value]="gender">
+          {{gender}}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="userForm.get('gender').hasError('required')">Enter the gender</mat-error>
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="fill" class="designation">
+      <mat-label>Designation Code</mat-label>
+      <input matInput placeholder="2"  name="designation" formControlName="designation" disabled>
+    </mat-form-field>
+    <br>
+  </div>
+  <button type="submit" mat-raised-button color="primary">
+    Add User
+  </button>
+</form>
+
+<!-- flight form -->
+
+<form [formGroup]="flightForm" (ngSubmit)="onAdd(flightForm)" *ngIf="!isuser">
+  <div class="example-container">
+
+    <mat-form-field appearance="fill">
+      <mat-label>Name</mat-label>
+      <input matInput type="text" name="name" formControlName="name" required>
+      <mat-error *ngIf="flightForm.get('name').hasError('required')">Enter the name</mat-error>
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="fill">
+      <mat-label>Origin</mat-label>
+      <input matInput type="text" name="origin" formControlName="origin" required>
+      <mat-error *ngIf="flightForm.get('origin').hasError('required')">Enter the origin</mat-error>
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="fill">
+      <mat-label>Destination</mat-label>
+      <input matInput type="text" name="destination" formControlName="destination" required>
+      <mat-error *ngIf="flightForm.get('destination').hasError('required')">Enter the destination</mat-error>
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="fill">
+      <mat-label>Fare</mat-label>
+      <input matInput type="text" name="fare" formControlName="fare" required>
+      <mat-error *ngIf="flightForm.get('fare').hasError('required')">Enter the fare</mat-error>
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="fill">
+      <mat-label>Type</mat-label>
+      <mat-select aria-placeholder="type" name="type" formControlName="type" required>
+        <mat-option *ngFor="let type of flighttype" [value]="type">
+          {{type}}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="flightForm.get('type').hasError('required')">Enter the type</mat-error>
+    </mat-form-field>
+    <br>
+  </div>
+  <button type="submit" mat-raised-button color="primary">
+    Add Flight
+  </button>
+</form>
+
+
